@@ -9,7 +9,7 @@ class DioService {
     final temp = await getTemporaryDirectory();
     final options = CacheOptions(
       store: HiveCacheStore(temp.path),
-      policy: CachePolicy.forceCache,
+      policy: CachePolicy.request,
       maxStale: const Duration(days: 7),
       priority: CachePriority.normal,
       cipher: null,

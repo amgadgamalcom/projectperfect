@@ -8,13 +8,16 @@ class AllUsersProvider extends ChangeNotifier {
     getNewData();
   }
   AllUsersModelResponse demo = getDemo();
+  bool currentDemo = true;
   AllUsersModelResponse? currentData;
   Future<void> getNewData() async {
     currentData = await GetAllUsersService();
+    currentDemo = false;
     notifyListeners();
   }
 
   Future<void> loadMore() async {
+    print("print more");
     final newdata = await GetAllUsersService(lazyloading: true);
     newdata?.data?.forEach((item) {
       bool exists = false;

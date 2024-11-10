@@ -22,7 +22,7 @@ class AllUsersScreen extends StatelessWidget {
                 ),
               ),
               bottomNavigationBar: Skeletonizer(
-                enabled: provider.currentData == null,
+                enabled: provider.currentDemo,
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
                   child: OverflowBar(
@@ -48,15 +48,17 @@ class AllUsersScreen extends StatelessWidget {
                 ),
               ),
               body: Skeletonizer(
-                enabled: provider.currentData == null,
+                enabled: provider.currentDemo,
                 child: ListView.builder(
-                  itemCount: provider.demo.data?.length ?? 0,
+                  itemCount: provider.currentData?.data?.length ??
+                      provider.demo.data?.length,
                   itemBuilder: (ctx, i) {
-                    if (i + 1 == provider.demo.data!.length) {
+                    if (i + 1 == provider.currentData?.data!.length) {
                       provider.loadMore();
                     }
                     return UserCardWidget(
-                      user: provider.demo.data![i],
+                      user: provider.currentData?.data?[i] ??
+                          provider.demo.data?[i],
                     );
                   },
                 ),
