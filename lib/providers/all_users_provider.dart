@@ -7,6 +7,7 @@ class AllUsersProvider extends ChangeNotifier {
   AllUsersProvider() {
     getNewData();
   }
+  AllUsersModelResponse demo = getDemo();
   AllUsersModelResponse? currentData;
   Future<void> getNewData() async {
     currentData = await GetAllUsersService();

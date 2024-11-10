@@ -22,7 +22,6 @@ class AllUsersScreen extends StatelessWidget {
                 ),
               ),
               bottomNavigationBar: Skeletonizer(
-                enableSwitchAnimation: true,
                 enabled: provider.currentData == null,
                 child: Padding(
                   padding: const EdgeInsets.all(14.0),
@@ -49,24 +48,17 @@ class AllUsersScreen extends StatelessWidget {
                 ),
               ),
               body: Skeletonizer(
-                enableSwitchAnimation: true,
                 enabled: provider.currentData == null,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: provider.currentData?.data?.length ?? 0,
-                        itemBuilder: (ctx, i) {
-                          if (i + 1 == provider.currentData!.data!.length) {
-                            provider.loadMore();
-                          }
-                          return UserCardWidget(
-                            user: provider.currentData!.data![i],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+                child: ListView.builder(
+                  itemCount: provider.demo.data?.length ?? 0,
+                  itemBuilder: (ctx, i) {
+                    if (i + 1 == provider.demo.data!.length) {
+                      provider.loadMore();
+                    }
+                    return UserCardWidget(
+                      user: provider.demo.data![i],
+                    );
+                  },
                 ),
               ),
             );

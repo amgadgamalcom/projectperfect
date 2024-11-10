@@ -6,12 +6,11 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UserCardWidget extends StatelessWidget {
-  final Data user;
-  const UserCardWidget({super.key, required this.user});
+  final Data? user;
+  const UserCardWidget({super.key, this.user});
 
   @override
   Widget build(BuildContext context) {
-    // print(user.id);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
@@ -31,9 +30,9 @@ class UserCardWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Hero(
-                tag: user.avatar!,
+                tag: user!.avatar!,
                 child: CachedNetworkImage(
-                  imageUrl: user.avatar!,
+                  imageUrl: user!.avatar!,
                   placeholder: (context, url) => Skeleton.keep(
                       child: Container(
                     width: 100,
@@ -52,7 +51,7 @@ class UserCardWidget extends StatelessWidget {
                     TextButton(
                       onPressed: () async => await launchUrl(
                         Uri.parse(
-                          "mailto:${user.email}",
+                          "mailto:${user!.email}",
                         ),
                       ),
                       child: Row(
@@ -65,7 +64,7 @@ class UserCardWidget extends StatelessWidget {
                             width: 6,
                           ),
                           Text(
-                            user.email!,
+                            user!.email!,
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.grey,
@@ -77,7 +76,7 @@ class UserCardWidget extends StatelessWidget {
                     TextButton(
                       onPressed: null,
                       child: Text(
-                        "${user.firstName!} ${user.lastName!}",
+                        "${user?.firstName!} ${user?.lastName!}",
                         style: const TextStyle(
                           fontSize: 18,
                           color: Colors.blue,

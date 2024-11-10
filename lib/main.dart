@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:perfectiontest/constants/routes.dart';
+import 'package:perfectiontest/services/dio_service.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await DioService.initialize();
+
   runApp(const MyApp());
 }
 
